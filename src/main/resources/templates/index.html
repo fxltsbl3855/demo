@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Demo</title>
+    <link rel="stylesheet" href="/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Demo</div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href=""></a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test" th:each="menu:${menus}">
+                <li th:if="${menu.children}==null" class="layui-nav-item">
+                    <a href="javascript:;" th:text="${menu.name}" th:v="${menu.relationUrl}"></a>
+                </li>
+                <li th:if="${menu.children}!=null" class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;" th:text="${menu.name}"></a>
+                    <dl class="layui-nav-child" th:each="menu2:${menu.children}">
+                        <dd><a href="javascript:;" th:text="${menu2.name}" th:v="${menu2.relationUrl}"></a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+            <iframe src="/user" frameborder="0" id="demoAdmin" style="width: 100%; height: 100%;"></iframe>
+    </div>
+
+
+</div>
+<script src="/layui.js"></script>
+<script src="https://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+<script>
+//<![CDATA[
+
+layui.use('element', function(){
+  var element = layui.element;
+//监听导航点击
+  element.on('nav(test)', function(elem){
+  $('dd').removeClass('layui-this');
+  $('li').removeClass('layui-this');
+   $(elem.context).parent().addClass('layui-this');
+    console.log(elem);
+    var url = $(elem.context).attr('v');
+    $('iframe').attr('src', url);
+  });
+});
+
+//  ]]>
+
+
+</script>
+</body>
+</html>
