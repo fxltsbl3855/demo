@@ -2,9 +2,7 @@ package com.yto.mdm.controller;
 
 
 
-import cn.com.yto56.basic.framework.model.rest.DataResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

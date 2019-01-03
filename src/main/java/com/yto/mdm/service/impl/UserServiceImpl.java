@@ -4,17 +4,13 @@ import cn.com.yto56.basic.framework.model.rest.BasePageResponse;
 import cn.com.yto56.basic.framework.model.rest.MutiResponse;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.yto.mdm.exception.user.UserException;
+import com.yto.mdm.exception.user.UserParamException;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.mybatis.mapper.UserMapper;
 import com.yto.mdm.service.UserService;
 import com.yto.mdm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.net.ConnectException;
-import java.sql.SQLException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,14 +18,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 校验用户名是否合业务规则，增加user对象，
+     * 规则：不能为空，并且用户名长度不能小于6
+     * 如果不和业务规则，抛出自定义的业务异常，一般针对每种业务情况需要定义不同的业务异常
+     * @param user
+     * @return 新加用户的ID
+     */
     @Override
     public int add(UserVo user) {
-        try {
-            return userMapper.insert(user.getUser());
-        }catch (Exception e){
-            //TODO 如果用户插入失败，写入操作日志，根据业务情况进行其他分支处理
-            throw new UserException("user add error");
+        String userName = user.getUser().getName();
+        if(userName == null || "".equals(userName.trim()) || userName.length() < 6){
+            throw new UserParamException("param user name is invalid");
         }
+        return userMapper.insert(user.getUser());
     }
 
     /**
@@ -49,11 +51,21 @@ public class UserServiceImpl implements UserService {
         return pageResponse;
     }
 
+    /**
+     * 删除用户
+     * @param user
+     * @return
+     */
     @Override
     public int delete(User user) {
         return userMapper.delete(user);
     }
 
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
     @Override
     public int update(UserVo user) {
         return userMapper.updateByPrimaryKey(user.getUser());

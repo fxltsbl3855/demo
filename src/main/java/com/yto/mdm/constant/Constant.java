@@ -3,7 +3,11 @@ package com.yto.mdm.constant;
 public class Constant {
 
     /**
-     * user insert connect error
+     * 用户增加，参数错误
      */
-    public static int USER_INSERT_CONNECT_ERROR = 100001;
+    public static int USER_PARAM_NAME_INVALID = 100001;
+
+
+
+
 }

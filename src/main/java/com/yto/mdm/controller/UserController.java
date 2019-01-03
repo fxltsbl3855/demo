@@ -80,10 +80,4 @@ public class UserController {
         return DataResult.ok();
     }
 
-    //统一异常处理
-    @RequestMapping("/exception")
-    public void exception() {
-        int i = 1 / 0;
-    }
-
 }
