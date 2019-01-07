@@ -19,5 +19,6 @@ public class AppApplication {
     {
         new SpringApplicationBuilder(AppApplication.class).web(true).run(args);
     }
+
 }
 
