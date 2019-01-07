@@ -1,13 +1,10 @@
 package com.yto.mdm.controller;
 
-
-
 import cn.com.yto56.basic.framework.model.rest.DataResult;
-import com.yto.mdm.sso.SsoService;
+import com.yto.sso.YtoRight;
 import com.yto.sso.bo.right.RightResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,14 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 public class SSOController {
     private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
 
-    @Autowired
-    public SsoService ssoService;
-
+    /**
+     * 获取用户菜单
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/permission/menu" ,method = RequestMethod.POST)
     public DataResult menu(HttpServletRequest request) {
         logger.info("get menu invoke...");
         String userName = request.getRemoteUser();
-        RightResp rightResp = ssoService.queryRightResp(userName);
+        RightResp rightResp = YtoRight.getMenuByUsername(userName);
         DataResult dataResult = new DataResult();
         dataResult.setData(rightResp.getPermissions());
         return dataResult;

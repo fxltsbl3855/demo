@@ -1,5 +1,5 @@
 package com.yto.mdm.service;
 
-public interface ZeroMqService {
+public interface ZeroMqTestService {
     boolean send(String msg);
 }

@@ -3,7 +3,6 @@ package com.yto.mdm.controller;
 import cn.com.yto56.basic.framework.model.rest.*;
 import com.yto.mdm.manager.impl.UserManagerImpl;
 import com.yto.mdm.mybatis.entity.User;
-import com.yto.mdm.sso.SsoService;
 import com.yto.mdm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserTestController {
 
     @Autowired
     public UserManagerImpl userManager;
-
-    @Autowired
-    public SsoService ssoService;
 
     @RequestMapping
     public ModelAndView index() {

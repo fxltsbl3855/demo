@@ -1,7 +1,7 @@
 package com.yto.mdm.service.impl;
 
 import cn.com.yto56.basic.framework.plugin.redis.ops.*;
-import com.yto.mdm.service.RedisDemoService;
+import com.yto.mdm.service.RedisTestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * 2 执行对应接口进行操作
  */
 @Service
-public class RedisServiceImpl implements RedisDemoService {
+public class RedisTestServiceImpl implements RedisTestService {
 
     @Autowired
     KeyValueOps keyValueOps;

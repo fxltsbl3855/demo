@@ -7,13 +7,13 @@ import com.github.pagehelper.PageHelper;
 import com.yto.mdm.exception.user.UserParamException;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.mybatis.mapper.UserMapper;
-import com.yto.mdm.service.UserService;
+import com.yto.mdm.service.UserTestService;
 import com.yto.mdm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserTestServiceImpl implements UserTestService {
 
     @Autowired
     private UserMapper userMapper;

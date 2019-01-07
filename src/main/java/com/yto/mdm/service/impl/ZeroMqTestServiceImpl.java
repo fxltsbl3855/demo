@@ -1,14 +1,12 @@
 package com.yto.mdm.service.impl;
 
 import com.yto.mdm.constant.Constant;
-import com.yto.mdm.service.ZeroMqService;
+import com.yto.mdm.service.ZeroMqTestService;
 import net.ytoframework.plugin.zeromq.MessageCallback;
 import net.ytoframework.plugin.zeromq.Sender;
-import net.ytoframework.plugin.zeromq.Subscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,8 +23,8 @@ import java.util.concurrent.TimeUnit;
  */
 //@Service
 //@Subscriber(topic = "topic2", threadSize = 10)
-public class ZeroMqServiceImpl implements MessageCallback<String>, ZeroMqService {
-    private static final Logger logger = LoggerFactory.getLogger(ZeroMqServiceImpl.class);
+public class ZeroMqTestServiceImpl implements MessageCallback<String>, ZeroMqTestService {
+    private static final Logger logger = LoggerFactory.getLogger(ZeroMqTestServiceImpl.class);
 
     @Autowired
     Sender<String> sender;
