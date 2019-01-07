@@ -15,7 +15,7 @@ import java.io.IOException;
  * Filter测试类
  */
 @Log
-public class LogCostFilter implements Filter {
+public class WebTestFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
 
     @Override
@@ -29,7 +29,7 @@ public class LogCostFilter implements Filter {
         logger.info("LogCostFilter doFilter................");
         long start = System.currentTimeMillis();
         HttpServletRequest httpRequest = (HttpServletRequest)servletRequest;
-
+        String url = httpRequest.getRequestURI();
         //TODO 拦截url，并做相应业务处理逻辑
 
         filterChain.doFilter(servletRequest,servletResponse);

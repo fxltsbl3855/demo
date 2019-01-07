@@ -4,7 +4,7 @@ import cn.com.yto56.basic.framework.model.rest.BasePageResponse;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.vo.UserVo;
 
-public interface UserManager {
+public interface UserTestManager {
 
     int add(UserVo user);
 

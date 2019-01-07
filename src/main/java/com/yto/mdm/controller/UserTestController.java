@@ -1,7 +1,7 @@
 package com.yto.mdm.controller;
 
 import cn.com.yto56.basic.framework.model.rest.*;
-import com.yto.mdm.manager.impl.UserManagerImpl;
+import com.yto.mdm.manager.impl.UserTestManagerImpl;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserTestController {
 
     @Autowired
-    public UserManagerImpl userManager;
+    public UserTestManagerImpl userManager;
 
     @RequestMapping
     public ModelAndView index() {

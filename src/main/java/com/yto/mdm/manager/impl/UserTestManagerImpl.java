@@ -1,7 +1,7 @@
 package com.yto.mdm.manager.impl;
 
 import cn.com.yto56.basic.framework.model.rest.BasePageResponse;
-import com.yto.mdm.manager.UserManager;
+import com.yto.mdm.manager.UserTestManager;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.service.UserTestService;
 import com.yto.mdm.vo.UserVo;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class UserManagerImpl implements UserManager {
-    private static final Logger logger = LoggerFactory.getLogger(UserManagerImpl.class);
+public class UserTestManagerImpl implements UserTestManager {
+    private static final Logger logger = LoggerFactory.getLogger(UserTestManagerImpl.class);
 
     @Autowired
     private UserTestService userService;
