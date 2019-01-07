@@ -1,4 +1,4 @@
-package com.yto.mdm.service;
+package com.yto.mdm.i18n;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;

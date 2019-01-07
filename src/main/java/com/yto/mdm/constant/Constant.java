@@ -8,6 +8,12 @@ public class Constant {
     public static int USER_PARAM_NAME_INVALID = 100001;
 
 
+    /**
+     * MQ topic
+     */
+    public static String MQ_TOPIC_MDM_MODULE = "TOPIC1";
+
+
 
 
 }

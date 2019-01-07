@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * 2 执行对应接口进行操作
  */
 @Service
-public class RedisDemoServiceImpl implements RedisDemoService {
+public class RedisServiceImpl implements RedisDemoService {
 
     @Autowired
     KeyValueOps keyValueOps;

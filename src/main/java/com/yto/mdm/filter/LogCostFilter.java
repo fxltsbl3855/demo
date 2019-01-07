@@ -1,6 +1,9 @@
 package com.yto.mdm.filter;
 
+import com.yto.mdm.controller.SSOController;
 import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
 import javax.servlet.FilterConfig;
@@ -13,26 +16,28 @@ import java.io.IOException;
  */
 @Log
 public class LogCostFilter implements Filter {
+    private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.info("LogCostFilter init................");
+        logger.info("LogCostFilter init................");
     }
 
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("LogCostFilter doFilter................");
+        logger.info("LogCostFilter doFilter................");
         long start = System.currentTimeMillis();
         HttpServletRequest httpRequest = (HttpServletRequest)servletRequest;
 
         //TODO 拦截url，并做相应业务处理逻辑
 
         filterChain.doFilter(servletRequest,servletResponse);
-        log.info("Execute cost="+(System.currentTimeMillis()-start));
+        logger.info("Execute cost="+(System.currentTimeMillis()-start));
     }
 
     @Override
     public void destroy() {
-        log.info("LogCostFilter destroy................");
+        logger.info("LogCostFilter destroy................");
     }
 }

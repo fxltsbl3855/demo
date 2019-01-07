@@ -2,15 +2,34 @@ package com.yto.mdm.controller;
 
 
 
-import com.yto.mdm.service.impl.ZeroMqServiceImpl;
+import cn.com.yto56.basic.framework.model.rest.DataResult;
+import com.yto.mdm.sso.SsoService;
+import com.yto.sso.bo.right.RightResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
-public class ComputeController {
-    private static final Logger logger = LoggerFactory.getLogger(ComputeController.class);
+public class SSOController {
+    private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
+
+    @Autowired
+    public SsoService ssoService;
+
+    @RequestMapping(value = "/permission/menu" ,method = RequestMethod.POST)
+    public DataResult menu(HttpServletRequest request) {
+        logger.info("get menu invoke...");
+        String userName = request.getRemoteUser();
+        RightResp rightResp = ssoService.queryRightResp(userName);
+        DataResult dataResult = new DataResult();
+        dataResult.setData(rightResp.getPermissions());
+        return dataResult;
+    }
 
     /**
      * 九州单点登录回调接口
@@ -18,6 +37,7 @@ public class ComputeController {
      */
 	@RequestMapping("/ssourl")
     public String ssourl(){
+        logger.info("ssourl invoke...");
 	    //TODO 封装token存入redis
 	    return "ok";
     }
@@ -28,6 +48,7 @@ public class ComputeController {
      */
     @RequestMapping("/logout")
     public String logout(){
+        logger.info("logout invoke...");
 	    //TODO 用户登出处理登出业务逻辑
         return "ok";
     }

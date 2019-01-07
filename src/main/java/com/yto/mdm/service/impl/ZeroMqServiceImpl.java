@@ -1,5 +1,6 @@
 package com.yto.mdm.service.impl;
 
+import com.yto.mdm.constant.Constant;
 import com.yto.mdm.service.ZeroMqService;
 import net.ytoframework.plugin.zeromq.MessageCallback;
 import net.ytoframework.plugin.zeromq.Sender;
@@ -7,6 +8,7 @@ import net.ytoframework.plugin.zeromq.Subscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,24 +23,22 @@ import java.util.concurrent.TimeUnit;
  *          2 实现MessageCallback并重写onMessage方法，
  *          3 在onMessage中实现业务逻辑
  */
-public class ZeroMqReceicerDemo implements MessageCallback<String>, ZeroMqService {
-    private static final Logger logger = LoggerFactory.getLogger(ZeroMqReceicerDemo.class);
+//@Service
+//@Subscriber(topic = "topic2", threadSize = 10)
+public class ZeroMqServiceImpl implements MessageCallback<String>, ZeroMqService {
+    private static final Logger logger = LoggerFactory.getLogger(ZeroMqServiceImpl.class);
+
     @Autowired
     Sender<String> sender;
-
 
     /**
      * 发送消息
      * @return
      */
     @Override
-    public String send() {
-        for (int i = 0; i < 100; i++) {
-            boolean b = sender.send("topic2", "msg" + i);
-        }
-        return "success";
+    public boolean send(String msg) {
+        return sender.send(Constant.MQ_TOPIC_MDM_MODULE, msg);
     }
-
 
     /**
      * 监听消息方法实现
@@ -46,7 +46,7 @@ public class ZeroMqReceicerDemo implements MessageCallback<String>, ZeroMqServic
      */
     @Override
     public void onMessage(String p) {
-        logger.info(Thread.currentThread().getName() + " msg: " + p);
+        logger.info(" msg: " + p);
 
         //TODO 处理业务逻辑
 

@@ -1,7 +1,7 @@
 package com.yto.mdm.controller;
 
 import cn.com.yto56.basic.framework.model.rest.*;
-import com.yto.mdm.manager.UserManagerImpl;
+import com.yto.mdm.manager.impl.UserManagerImpl;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.sso.SsoService;
 import com.yto.mdm.vo.UserVo;

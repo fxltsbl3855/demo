@@ -56,11 +56,21 @@
         </dependency>
 
         <!-- bus needs-->
-        <!--<dependency>-->
-            <!--<groupId>com.ctrip.framework.apollo</groupId>-->
-            <!--<artifactId>apollo-client</artifactId>-->
-            <!--<version>${apolloclient.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
