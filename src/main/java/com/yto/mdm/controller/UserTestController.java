@@ -4,6 +4,8 @@ import cn.com.yto56.basic.framework.model.rest.*;
 import com.yto.mdm.manager.impl.UserTestManagerImpl;
 import com.yto.mdm.mybatis.entity.User;
 import com.yto.mdm.vo.UserVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/user")
 public class UserTestController {
+    private static final Logger logger = LoggerFactory.getLogger(UserTestController.class);
 
     @Autowired
     public UserTestManagerImpl userManager;
@@ -45,7 +48,9 @@ public class UserTestController {
     @ResponseBody
     public DataResult<BasePageResponse> queryPage(UserVo user) {
         //TODO status，message 在jar包中应该定义成常量
-        return new DataResult<BasePageResponse>(0, "ok", userManager.queryPage(user));
+        BasePageResponse<User>  res = userManager.queryPage(user);
+        logger.info("queryPage result =============== "+res.getItems().size());
+        return new DataResult<BasePageResponse>(0, "ok", res);
     }
 
     /**

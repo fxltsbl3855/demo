@@ -1,6 +1,6 @@
 package com.yto.mdm;
 
-import com.idsmanager.sso.client.spring.SingleSignOnFilterConfiguration;
+//import com.idsmanager.sso.client.spring.SingleSignOnFilterConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.yto.mdm"})
 @ServletComponentScan(basePackages = {"com.yto.mdm.filter"})
-@Import({SingleSignOnFilterConfiguration.class})
+//@Import({SingleSignOnFilterConfiguration.class})
 public class AppApplication {
 
     public static void main( String[] args )
