@@ -1,13 +1,16 @@
-package com.yto.mdm.mybatis;
+package com.yto.mdm.mybatis.datasource2;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PaginationInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
@@ -18,16 +21,21 @@ import java.util.Properties;
 /**
  * Mybatis & Mapper & PageHelper 配置
  */
-@Configuration
-public class MybatisConfig {
+@Configuration("configDataSource2")
+public class MybatisConfig2 {
 
-	public static final String MODEL_PACKAGE = "com.yto.mdm.mybatis.entity";//Model所在包
-	public static final String MAPPER_PACKAGE = "com.yto.mdm.mybatis.mapper";//Mapper所在包
+	public static final String MODEL_PACKAGE = "com.yto.mdm.mybatis.datasource2.entity";//Model所在包
+	public static final String MAPPER_PACKAGE = "com.yto.mdm.mybatis.datasource2.mapper";//Mapper所在包
 	public static final String MAPPER_INTERFACE_REFERENCE = "tk.mybatis.mapper.common.Mapper";//Mapper插件基础接口的完全限定名
 
+    @Bean(name = "dataSource2")
+    @ConfigurationProperties(prefix = "spring.datasource.datasource2")
+    public DataSource dataSource2() {
+        return DataSourceBuilder.create().build();
+    }
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSource) throws Exception {
+    @Bean(name = "dataSource2SqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("dataSource2") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
         factory.setDataSource(dataSource);
         factory.setTypeAliasesPackage(MODEL_PACKAGE);
@@ -45,14 +53,15 @@ public class MybatisConfig {
 
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        factory.setMapperLocations(resolver.getResources("classpath:mapper/**/*.xml"));
+        factory.setMapperLocations(resolver.getResources("classpath:mapper/datasource2/**/*.xml"));
         return factory.getObject();
     }
 
-    @Bean
+    @Bean(name = "dataSource2MapperScannerConfigurer")
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
+        mapperScannerConfigurer.setBeanName("dataSource2MapperScannerConfigurer");
+        mapperScannerConfigurer.setSqlSessionFactoryBeanName("dataSource2SqlSessionFactory");
         mapperScannerConfigurer.setBasePackage(MAPPER_PACKAGE);
 
         //配置通用Mapper，详情请查阅官方文档
@@ -65,8 +74,8 @@ public class MybatisConfig {
         return mapperScannerConfigurer;
     }
 
-    @Bean
-    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+    @Bean(name = "dataSource2SqlSessionTemplate")
+    public SqlSessionTemplate sqlSessionTemplate(@Qualifier("dataSource2SqlSessionFactory")SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
     

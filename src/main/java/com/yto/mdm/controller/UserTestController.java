@@ -2,7 +2,9 @@ package com.yto.mdm.controller;
 
 import cn.com.yto56.basic.framework.model.rest.*;
 import com.yto.mdm.manager.impl.UserTestManagerImpl;
-import com.yto.mdm.mybatis.entity.User;
+import com.yto.mdm.mybatis.datasource1.entity.User;
+import com.yto.mdm.mybatis.datasource2.entity.UserInfo;
+import com.yto.mdm.vo.UserInfoVo;
 import com.yto.mdm.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,14 +43,14 @@ public class UserTestController {
     /**
      * 根据条件查询用户
      *
-     * @param user
      * @return
      */
     @RequestMapping("/query")
     @ResponseBody
-    public DataResult<BasePageResponse> queryPage(UserVo user) {
+    public DataResult<BasePageResponse> queryPage(UserVo userInfo) {
         //TODO status，message 在jar包中应该定义成常量
-        BasePageResponse<User>  res = userManager.queryPage(user);
+        BasePageResponse<User>  res = userManager.queryPage(userInfo);
+//        BasePageResponse<UserInfo>  res = userManager.queryPageFromDS2(userInfo);
         logger.info("queryPage result =============== "+res.getItems().size());
         return new DataResult<BasePageResponse>(0, "ok", res);
     }

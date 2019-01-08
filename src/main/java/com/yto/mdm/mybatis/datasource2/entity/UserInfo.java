@@ -1,11 +1,11 @@
-package com.yto.mdm.mybatis.entity;
+package com.yto.mdm.mybatis.datasource2.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class UserInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

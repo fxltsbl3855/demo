@@ -1,7 +1,7 @@
 package com.yto.mdm.vo;
 
 import cn.com.yto56.basic.framework.model.rest.BasePageRequest;
-import com.yto.mdm.mybatis.entity.User;
+import com.yto.mdm.mybatis.datasource1.entity.User;
 
 public class UserVo extends BasePageRequest {
 

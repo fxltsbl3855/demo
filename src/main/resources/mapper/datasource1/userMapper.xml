@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yto.mdm.mybatis.datasource1.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.yto.mdm.mybatis.datasource1.entity.User">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+  </resultMap>
+
+    <select id="query" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select *
+        from user
+        <where>
+            <if test="id != null">
+            and id = #{id,jdbcType=LONG}
+            </if>
+            <if test="name != null">
+            and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="age != null">
+                and age = #{age,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+</mapper>

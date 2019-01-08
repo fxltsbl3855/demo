@@ -5,9 +5,12 @@ import cn.com.yto56.basic.framework.model.rest.MutiResponse;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yto.mdm.exception.user.UserParamException;
-import com.yto.mdm.mybatis.entity.User;
-import com.yto.mdm.mybatis.mapper.UserMapper;
+import com.yto.mdm.mybatis.datasource1.entity.User;
+import com.yto.mdm.mybatis.datasource1.mapper.UsersMapper;
+import com.yto.mdm.mybatis.datasource2.entity.UserInfo;
+import com.yto.mdm.mybatis.datasource2.mapper.UserInfoMapper;
 import com.yto.mdm.service.UserTestService;
+import com.yto.mdm.vo.UserInfoVo;
 import com.yto.mdm.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,10 @@ import org.springframework.stereotype.Service;
 public class UserTestServiceImpl implements UserTestService {
 
     @Autowired
-    private UserMapper userMapper;
+    private UsersMapper usersMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     /**
      * 校验用户名是否合业务规则，增加user对象，
@@ -31,7 +37,7 @@ public class UserTestServiceImpl implements UserTestService {
         if(userName == null || "".equals(userName.trim()) || userName.length() < 6){
             throw new UserParamException("param user name is invalid");
         }
-        return userMapper.insert(user.getUser());
+        return usersMapper.insert(user.getUser());
     }
 
     /**
@@ -44,8 +50,18 @@ public class UserTestServiceImpl implements UserTestService {
     @Override
     public BasePageResponse<User> queryPage(UserVo user) {
         PageHelper.startPage(user.getPageNo(), user.getLimit());
-        Page<User> page = userMapper.query(user.getUser());
+        Page<User> page = usersMapper.query(user.getUser());
         BasePageResponse<User> pageResponse = new MutiResponse<User>();
+        pageResponse.setTotal(page.getTotal());
+        pageResponse.setItems(page);
+        return pageResponse;
+    }
+
+    @Override
+    public BasePageResponse<UserInfo> queryPageFromDS2(UserInfoVo user) {
+        PageHelper.startPage(user.getPageNo(), user.getLimit());
+        Page<UserInfo> page = userInfoMapper.query(user.getUserInfo());
+        BasePageResponse<UserInfo> pageResponse = new MutiResponse<UserInfo>();
         pageResponse.setTotal(page.getTotal());
         pageResponse.setItems(page);
         return pageResponse;
@@ -58,7 +74,7 @@ public class UserTestServiceImpl implements UserTestService {
      */
     @Override
     public int delete(User user) {
-        return userMapper.delete(user);
+        return usersMapper.delete(user);
     }
 
     /**
@@ -68,7 +84,7 @@ public class UserTestServiceImpl implements UserTestService {
      */
     @Override
     public int update(UserVo user) {
-        return userMapper.updateByPrimaryKey(user.getUser());
+        return usersMapper.updateByPrimaryKey(user.getUser());
     }
 
 }

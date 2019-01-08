@@ -2,8 +2,10 @@ package com.yto.mdm.manager.impl;
 
 import cn.com.yto56.basic.framework.model.rest.BasePageResponse;
 import com.yto.mdm.manager.UserTestManager;
-import com.yto.mdm.mybatis.entity.User;
+import com.yto.mdm.mybatis.datasource1.entity.User;
+import com.yto.mdm.mybatis.datasource2.entity.UserInfo;
 import com.yto.mdm.service.UserTestService;
+import com.yto.mdm.vo.UserInfoVo;
 import com.yto.mdm.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,11 @@ public class UserTestManagerImpl implements UserTestManager {
     @Override
     public BasePageResponse<User> queryPage(UserVo userVo) {
         return userService.queryPage(userVo);
+    }
+
+    @Override
+    public BasePageResponse<UserInfo> queryPageFromDS2(UserInfoVo userInfoVo) {
+        return userService.queryPageFromDS2(userInfoVo);
     }
 
     @Override
