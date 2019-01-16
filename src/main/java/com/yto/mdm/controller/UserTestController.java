@@ -1,10 +1,8 @@
 package com.yto.mdm.controller;
 
 import cn.com.yto56.basic.framework.model.rest.*;
-import com.yto.mdm.manager.impl.UserTestManagerImpl;
+import com.yto.mdm.manager.UserTestManager;
 import com.yto.mdm.mybatis.datasource1.entity.User;
-import com.yto.mdm.mybatis.datasource2.entity.UserInfo;
-import com.yto.mdm.vo.UserInfoVo;
 import com.yto.mdm.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +18,7 @@ public class UserTestController {
     private static final Logger logger = LoggerFactory.getLogger(UserTestController.class);
 
     @Autowired
-    public UserTestManagerImpl userManager;
+    public UserTestManager userManager;
 
     @RequestMapping
     public ModelAndView index() {

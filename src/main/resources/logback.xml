@@ -22,7 +22,7 @@
     <!-- 业务日志文件 end-->
 
     <!-- 默认配置 -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="stdout" />
         <appender-ref ref="busLog" />
     </root>

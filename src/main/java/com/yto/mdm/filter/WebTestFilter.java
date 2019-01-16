@@ -1,12 +1,13 @@
 package com.yto.mdm.filter;
 
 import com.yto.mdm.controller.SSOController;
-import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 
 import javax.servlet.*;
 import javax.servlet.FilterConfig;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -14,7 +15,8 @@ import java.io.IOException;
 /**
  * Filter测试类
  */
-@Log
+@WebFilter(urlPatterns = "/*")
+@Order(1)
 public class WebTestFilter implements Filter {
     private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
 

@@ -6,13 +6,11 @@ import com.yto.sso.bo.right.RightResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class SSOController {
@@ -20,10 +18,10 @@ public class SSOController {
 
     @RequestMapping("/")
     public ModelAndView index(HttpServletRequest request) {
-        ModelAndView m = new ModelAndView("index");
         logger.info("get index invoke...");
-//        String userName = request.getRemoteUser();
-        String userName = "01589572";
+        ModelAndView m = new ModelAndView("index");
+        String userName = request.getRemoteUser();
+        logger.info("username is  {} ",userName);
         RightResp rightResp = YtoRight.getMenuByUsername(userName);
         m.addObject("menus", rightResp.getPermissions());
         return m;
@@ -51,10 +49,9 @@ public class SSOController {
      */
 	@RequestMapping("/ssourl")
     @ResponseBody
-    public  String ssourl(){
-        logger.info("ssourl invoke...");
+    public  void ssourl(HttpServletRequest request, @RequestParam String id_token, HttpServletResponse response, String redirect_url){
+        logger.info("ssourl invoke...,id_token = {}, redirect_url = {}",id_token,redirect_url);
 	    //TODO 封装token存入redis
-	    return "ok";
     }
 
     /**
