@@ -17,14 +17,13 @@
     <name>demo</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springboot.version>2.0.3.RELEASE</springboot.version>
         <mybatisboot.version>1.3.2</mybatisboot.version>
         <github.pagehelper.version>4.2.1</github.pagehelper.version>
         <tk.mybatis.version>3.5.1</tk.mybatis.version>
         <mysql.connector.version>8.0.12</mysql.connector.version>
-        <httpclient.version>4.5.5</httpclient.version>
         <apolloclient.version>1.1.0</apolloclient.version>
+        <springboot.actuator.version>2.0.3.RELEASE</springboot.actuator.version>
     </properties>
 
     <dependencies>
@@ -62,16 +61,6 @@
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatisboot.version}</version>
@@ -91,65 +80,23 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
 
-        <!-- spring cloud-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-ribbon</artifactId>-->
-            <!--<version>${springcoud.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-feign</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
-            <!--<version>Finchley.M1</version>-->
-        <!--</dependency>-->
+        <!--spring cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-config</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-hystrix</artifactId>-->
-        <!--</dependency>-->
-        <!-- spring boot-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+        <!--yto framework -->
         <dependency>
             <groupId>cn.com.yto56.basic.framework</groupId>
             <artifactId>yto-framework-plugin-zeromq</artifactId>
             <version>3.1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>cn.com.yto56.basic.framework</groupId>
             <artifactId>yto-framework-plugin-redis</artifactId>
@@ -160,24 +107,6 @@
             <artifactId>yto-framework-rest</artifactId>
             <version>3.1.0-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.lettuce</groupId>
-            <artifactId>lettuce-core</artifactId>
-            <version>5.0.4.RELEASE</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -192,19 +121,12 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>maven-snapshots</id>
-            <url>http://10.130.36.174:8081/repository/maven-snapshots/</url>
-        </repository>
-    </distributionManagement>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.8.RELEASE</version>
+                <version>2.0.5.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>

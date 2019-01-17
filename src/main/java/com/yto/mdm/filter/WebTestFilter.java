@@ -1,6 +1,5 @@
 package com.yto.mdm.filter;
 
-import com.yto.mdm.controller.SSOController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -18,7 +17,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = "/*")
 @Order(1)
 public class WebTestFilter implements Filter {
-    private static final Logger logger = LoggerFactory.getLogger(SSOController.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebTestFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

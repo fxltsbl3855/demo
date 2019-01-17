@@ -18,9 +18,11 @@ public class RedisTestServiceImpl implements RedisTestService {
     @Autowired
     KeyValueOps keyValueOps;
 
-    public void test() {
-        keyValueOps.set("de", "key", "value", 100, TimeUnit.SECONDS);
-        keyValueOps.get("de", "key").toString();
+    public void set(String key,String value) {
+        keyValueOps.set("de", key, value, 100, TimeUnit.SECONDS);
     }
 
+    public String get(String key) {
+        return keyValueOps.get("de", key).toString();
+    }
 }

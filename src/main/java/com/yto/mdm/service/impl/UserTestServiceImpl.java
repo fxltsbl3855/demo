@@ -24,6 +24,7 @@ public class UserTestServiceImpl implements UserTestService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
+
     /**
      * 校验用户名是否合业务规则，增加user对象，
      * 规则：不能为空，并且用户名长度不能小于6

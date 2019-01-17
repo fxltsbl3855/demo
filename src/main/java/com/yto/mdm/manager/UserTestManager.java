@@ -8,6 +8,10 @@ import com.yto.mdm.vo.UserVo;
 
 public interface UserTestManager {
 
+    void setRedis(String key,String value);
+
+    String getRedis(String key);
+
     int add(UserVo user);
 
     BasePageResponse<User> queryPage(UserVo user);

@@ -2,6 +2,10 @@ package com.yto.mdm.service;
 
 public interface RedisTestService {
 
-    void test();
+    void set(String key,String value);
+
+    String get(String key);
+
+
 
 }

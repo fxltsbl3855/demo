@@ -4,6 +4,7 @@ import cn.com.yto56.basic.framework.model.rest.BasePageResponse;
 import com.yto.mdm.manager.UserTestManager;
 import com.yto.mdm.mybatis.datasource1.entity.User;
 import com.yto.mdm.mybatis.datasource2.entity.UserInfo;
+import com.yto.mdm.service.RedisTestService;
 import com.yto.mdm.service.UserTestService;
 import com.yto.mdm.vo.UserInfoVo;
 import com.yto.mdm.vo.UserVo;
@@ -21,6 +22,18 @@ public class UserTestManagerImpl implements UserTestManager {
 
     @Autowired
     private UserTestService userService;
+    @Autowired
+    private RedisTestService redisTestService;
+
+    @Override
+    public void setRedis(String key, String value) {
+        redisTestService.set(key,value);
+    }
+
+    @Override
+    public String getRedis(String key) {
+        return redisTestService.get(key);
+    }
 
     @Override
     public int add(UserVo userVo) {
