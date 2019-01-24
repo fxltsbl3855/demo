@@ -32,3 +32,6 @@ CREATE TABLE `user` (
   `login` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `user` (`id`, `name`, `age`, `email`,`phone`,`message`,`address`,`city`,`ip`,`login`) VALUES (1, 'datasource2-test1', 31, 'test@yto.email.cn', '1234567890', 'this is message', '授课计划看撒娇大家都会','xian', '0.0.0.0','100');
+INSERT INTO `user` (`id`, `name`, `age`, `email`,`phone`,`message`,`address`,`city`,`ip`,`login`) VALUES (2, 'datasource2-test2', 31, 'test@yto.email.cn', '1234567890', 'this is message', '授课计划看撒娇大家都会','xian', '0.0.0.0','100');

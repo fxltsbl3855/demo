@@ -50,27 +50,6 @@ public class SSOController {
         return dataResult;
     }
 
-//    /**
-//     * 九州单点登录回调接口
-//     *
-//     * @return
-//     */
-//    @RequestMapping("/ssourl")
-//    @ResponseBody
-//    public void ssourl(@RequestParam String id_token, HttpServletResponse response, String redirect_url) throws IOException, JoseException {
-//        logger.info("ssourl invoke...");
-//        DingdangUserRetriever retriever = new DingdangUserRetriever(id_token, publicKey);
-//        DingdangUserRetriever.User user = retriever.retrieve();
-//        User u = new User();
-//        u.setName(user.getName());
-//        String token = jwtService.token(JsonUtil.bean2Json(u));
-//        if (StringUtils.isEmpty(redirect_url)) {
-//            redirect_url = homeUrl;
-//        }
-//        addcookie(response, token);
-//        response.sendRedirect(redirect_url);
-//    }
-
     /**
      * 九州单点登出调用接口
      *

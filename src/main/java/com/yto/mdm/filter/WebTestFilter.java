@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 /**
- * Filter测试类
+ * Filter示例类
  */
 @WebFilter(urlPatterns = "/*")
 @Order(1)

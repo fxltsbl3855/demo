@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.yto.mdm"})
 @ServletComponentScan(basePackages = {"com.yto.mdm.filter"})
-//@Import({SingleSignOnFilterConfiguration.class})
 public class AppApplication {
 
     public static void main( String[] args )

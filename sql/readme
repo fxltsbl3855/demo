@@ -1,0 +1,7 @@
+说明：
+    项目中支持多数据源，代码中实现了两个mysql数据源。datasource1和datasource2数据库中表结构一样。
+
+导入步骤：
+    1 一个mysql实例中(方便期间再一个实例中)建两个不同的database（比如test和mytest）
+    2 test中执行datasource1.sql
+    3 mytest中执行datasource2.sql
